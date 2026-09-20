@@ -1,0 +1,35 @@
+import java.util.List;
+public class App {
+    public static void main(String[] args) {
+
+        Pedido pedido = new Pedido();
+        pedido.setCliente("Ana");
+        pedido.setTipoCliente("VIP");
+        pedido.agregarPlato("Bandeja paisa", 28000);
+        pedido.agregarPlato("Limonada", 6000);
+        Factura factura = new Factura();
+        BaseDeDatos baseDeDatos = new BaseDeDatos();
+        ImprimirRecibo recibo = new ImprimirRecibo(new ImpresoraTermica());
+        CorreoConfirmacion correo = new CorreoConfirmacion();
+
+        System.out.println("Total: " + factura.calcularTotal(pedido));
+        baseDeDatos.guardarEnBaseDeDatos(pedido);
+        recibo.imprimirRecibo(pedido);
+        correo.notificar(pedido);
+
+        // El código cliente confía en que TODO MetodoPago se puede cobrar igual...
+        List<MetodoPago> pagosDelDia = List.of(
+            new PagoTarjeta(),
+            new PagoEfectivo(),
+            new PagoPuntosFidelidad()
+        );
+
+        for (MetodoPago pago : pagosDelDia) {
+            pago.cobrar(15000);  // esto revienta con PagoPuntosFidelidad si el monto supera los puntos
+        }
+
+        // El mesero queda obligado a "implementar" trabajos que no le corresponden
+        Empleado mesero = new Mesero();
+        mesero.atenderMesa();
+    }
+}
