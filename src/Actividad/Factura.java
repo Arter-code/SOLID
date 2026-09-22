@@ -1,11 +1,9 @@
+// Aqui se utiliza el principio Open / Close, ya que no estamos usando descuento directamente, si no la interfaz
 public class Factura {
     private final Subtotal subtotal = new Subtotal();
-    private final Descuento descuento = new Descuento();
-    public double calcularTotal(Pedido p){
 
-
-        return descuento.descuento(p,subtotal.calcularSubtotal(p));
-
+    public double calcularTotal(Pedido p, Descuento descuento) {
+        double valorSubtotal = subtotal.calcularSubtotal(p);
+        return descuento.aplicar(valorSubtotal);
     }
-
 }

@@ -1,9 +1,11 @@
-class Mesero implements Empleado {
+class Mesero implements AtiendeMesas {
     @Override
     public void atenderMesa() {
         System.out.println("El mesero atiende la mesa.");
     }
 
+    // Sin la modificacion para interface segregation
+    /* 
     @Override
     public void cocinar() {
         throw new UnsupportedOperationException("Un mesero no cocina.");
@@ -18,4 +20,5 @@ class Mesero implements Empleado {
     public void cobrarEnCaja() {
         throw new UnsupportedOperationException("Un mesero no cobra en caja.");
     }
+    */
 }

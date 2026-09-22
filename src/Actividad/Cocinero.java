@@ -1,9 +1,11 @@
-class Cocinero implements Empleado {
+class Cocinero implements Cocina {
     @Override
-    public void atenderMesa() {
-        throw new UnsupportedOperationException("Un cocinero no atiende mesas.");
+    public void cocinar() {
+        System.out.println("El cocinero prepara el plato.");
     }
 
+    // Sin el principio de interface segregation
+    /* 
     @Override
     public void cocinar() {
         System.out.println("El cocinero prepara el plato.");
@@ -18,4 +20,5 @@ class Cocinero implements Empleado {
     public void cobrarEnCaja() {
         throw new UnsupportedOperationException("Un cocinero no cobra en caja.");
     }
+    */
 }
