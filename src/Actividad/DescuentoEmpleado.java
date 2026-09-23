@@ -1,3 +1,4 @@
+//Creamos la clase DescuentoEmpleado que implementa la interfaz descuento respentando el principio OCP
 public class DescuentoEmpleado implements Descuento {
 
     @Override
